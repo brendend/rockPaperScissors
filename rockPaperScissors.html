@@ -10,9 +10,8 @@
     
         <script>
             // constants for both selections
-            let initialSelection = (prompt("Please enter Rock, Paper or Scissors."));
-            let playerSelection = initialSelection.toLowerCase();
-            const computerSelection = computerPlay();
+            
+            
 
 
             // function for the AI (chooses random element from options array)
@@ -47,9 +46,20 @@
                 return result;
             }
 
-            console.log(playRound(playerSelection, computerSelection));
-            console.log('AI chose: ' + computerSelection);
-            console.log('You chose: ' + playerSelection);
+            function game() {
+                let computerSelection = computerPlay();
+                computerPlay();
+                let initialSelection = (prompt("Please enter Rock, Paper or Scissors."));
+                let playerSelection = initialSelection.toLowerCase();
+                console.log('AI chose: ' + computerSelection);
+                console.log('You chose: ' + playerSelection);
+                console.log(playRound(playerSelection, computerSelection));
+            }
+           // loop to play game 5 times
+           let i;
+           for (i = 0; i < 5; i++) {
+               game();
+           }
 
         </script>
     </body>
