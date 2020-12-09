@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="gameButtons">
+            <h3 id="optTitle">Choose an option!</h3>
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+
+        <script>
+            const buttons = document.querySelectorAll('button');
+            // adding the results to the buttons div
+            const container = document.querySelector('#gameButtons');
+            const resultPara = document.createElement('p');
+            const totalPara = document.createElement('p');
+            resultPara.classList.add('result');
+            totalPara.classList.add('totals');
+            container.appendChild(resultPara);
+            container.appendChild(totalPara);
+            let aiCounter = 0;
+            let playerCounter = 0;
+            
+            // function for the AI (chooses random element from options array)
+            function computerPlay() {
+                //options array
+                let options = ['rock', 'paper', 'scissors'];
+
+                let randOption = options[Math.floor(Math.random() * options.length)];
+                return randOption;
+            }
+
+            // "plays" a round of Rock paper scissors and returns the result
+            function playRound(playerSelection, computerSelection) {
+                
+                let result;
+
+                if (playerSelection === 'rock' && computerSelection === 'paper') {
+                    result = "You Lose! Paper beats Rock";
+                } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+                    result = "You Lose! Scissors beats Paper";
+                } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+                    result = "You Lose! Rock beats Scissors";
+                } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+                    result = "You Win! Paper beats Rock";
+                } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+                    result = "You Win! Scissors beats Paper";
+                } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+                    result = "You Win! Rock beats Scissors";
+                } else {
+                    result = "No Winner, play again.";
+                }
+                return result;
+            }
+            
+            
+
+            buttons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    document.querySelector('#optTitle').innerText = "Choose an option!";
+                    // set the players choice to playerSelection
+                    let playerSelection = button.id;
+                    // set computerSelection to the return of computer play
+                    let computerSelection = computerPlay();
+                    computerPlay();
+                    // reset html between results
+                    resultPara.innerHTML = "";
+                    // set inner html to result of game
+                    resultPara.innerHTML = "You chose: " + playerSelection + '.<br />' +
+                    "The A.I chose: " + computerSelection + '.<br />' +
+                    playRound(playerSelection, computerSelection) + '.<br />';
+                    // call winCOunt to get totals
+                    winCount(playRound(playerSelection, computerSelection));
+                    // add the totals to the container div.
+                    totalPara.innerHTML = "The total amount of games you have won: " + playerCounter + '.<br />' +
+                    "The total amount of games the A.I has won: " + aiCounter + '.<br />';
+                    // test to display the winner of the game
+                    if (playerCounter === 5) {
+                        totalPara.innerHTML = "You have won the game!";
+                        playerCounter = 0;
+                        aiCounter = 0;
+                        resultPara.innerHTML = "";
+                        document.querySelector('#optTitle').innerText = "Choose an option to start a new game!";
+                        alert("You won!!!")
+                     } else if (aiCounter === 5) {
+                        totalPara.innerHTML = "The A.I has won the game!";
+                        playerCounter = 0;
+                        aiCounter = 0;
+                        resultPara.innerHTML = "";
+                        document.querySelector('#optTitle').innerText = "Choose an option to start a new game!";
+                        alert("You lost...")
+                     };
+                });       
+            });
+           
+            // Function to increment counter
+            function winCount(gameResult) {
+                if (gameResult === "You Lose! Paper beats Rock" || gameResult === "You Lose! Scissors beats Paper" || gameResult === "You Lose! Rock beats Scissors") {
+                    return aiCounter += 1;
+                } else if  (gameResult === "No Winner, play again.") {
+                    return null;
+                } else {
+                    return playerCounter += 1;
+                };       
+            }; 
+        </script>
+    </body>
+</html>

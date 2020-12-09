@@ -1,0 +1,56 @@
+html {
+    background-image: url('images/rps3.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: #fdde75;
+}
+p {
+    font-size: 20px;
+    padding: 30px;
+    position: static;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+}
+h3 {
+    font-size: 30px;
+    margin: 0;
+    position: relative;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+}
+#gameButtons {
+    margin: 0;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+}
+
+
+button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: rgb(247, 247, 247);
+    background-color: #494949;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+button:hover {background-color: #292929}
+
+button:active {
+    background-color: #353535;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
